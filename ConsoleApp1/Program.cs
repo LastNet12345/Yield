@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1
+﻿using Microsoft.VisualBasic;
+
+namespace ConsoleApp1
 {
     internal class Program
     {
@@ -17,6 +19,44 @@
             {
                 Console.WriteLine(item);
             }
+
+            foreach (var item in GetNumbersOrdinary().Take(10))
+            {
+                //if(item <= 10) 
+                //{ 
+                //    Console.WriteLine(item); 
+                //}
+                Console.WriteLine(item);
+            } 
+            
+            foreach (var item in GetNumbersYield().Take(2))
+            {
+                
+                Console.WriteLine(item);
+            }
+        }
+
+        private static IEnumerable<int> GetNumbersYield()
+        {
+            int i = 0;
+
+            while (true)
+            {
+                yield return ++i;
+            }
+        }
+
+        private static IEnumerable<int> GetNumbersOrdinary()
+        {
+            int i = 0;
+            var res = new List<int>();
+
+            while (i < 10000000)
+            {
+                res.Add(++i);
+            }
+
+            return res; 
         }
 
         private static IEnumerable<int> GetNumbers()
